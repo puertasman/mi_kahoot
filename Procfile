@@ -1,0 +1,1 @@
+web: gunicorn kahoot_django_game.wsgi
