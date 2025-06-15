@@ -36,5 +36,9 @@ def check_answer(request):
         data = json.loads(request.body)
         q_index = data.get('index')
         selected = data.get('selected')
+
+        if not isinstance(q_index, int) or q_index < 0 or q_index >= len(QUESTIONS):
+            return JsonResponse({"error": "invalid question index"}, status=400)
+
         correct = QUESTIONS[q_index]['answer']
         return JsonResponse({"correct": selected == correct})
